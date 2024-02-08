@@ -1,9 +1,9 @@
-import Home from "../Pages/Home";
+import { Outlet } from "react-router-dom";
 
 const Root = () => {
   return (
-    <div>
-      <Home></Home>
+    <div className=" w-5/6 mx-auto">
+      <Outlet></Outlet>
     </div>
   );
 };

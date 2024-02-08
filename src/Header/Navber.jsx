@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import user from "../assets/user.png";
 
 const Navber = () => {
@@ -57,7 +57,9 @@ const Navber = () => {
               <img alt="Tailwind CSS Navbar component " src={user} />
             </div>
           </div>
-          <a className="btn btn-sm">Login</a>
+          <Link to="/login">
+            <span className="btn btn-sm">Login</span>
+          </Link>
         </div>
       </div>
     </div>

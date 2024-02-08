@@ -1,9 +1,12 @@
+import { useLoaderData } from "react-router-dom";
 import Header from "../Header/Header";
 import Navber from "../Header/Navber";
 import LeftSide from "./Sidebar/LeftSide";
 import RightSide from "./Sidebar/RightSide";
 
 const Home = () => {
+  const news = useLoaderData();
+  console.log(news);
   return (
     <div className=" w-5/6 mx-auto">
       <Header></Header>

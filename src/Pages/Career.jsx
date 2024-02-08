@@ -1,13 +1,13 @@
 import Header from "../Header/Header";
 import Navber from "../Header/Navber";
 
-const News = () => {
+const Career = () => {
   return (
     <div>
+      <Header></Header>
       <Navber></Navber>
-      <h1>this is news page</h1>
     </div>
   );
 };
 
-export default News;
+export default Career;

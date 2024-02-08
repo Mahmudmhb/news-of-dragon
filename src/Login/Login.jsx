@@ -1,8 +1,27 @@
-import React from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import Navber from "../Header/Navber";
+import { AuthContext } from "../AuthProvider/AuthProvider";
 
 const Login = () => {
+  const { signInWithEmail } = useContext(AuthContext);
+
+  const loginHandle = (e) => {
+    e.preventDefault();
+    const form = new FormData(e.currentTarget);
+    const email = form.get("email");
+    const password = form.get("password");
+    console.log(form, email, password);
+    signInWithEmail(email, password)
+      .then((result) => {
+        console.log(result.user);
+        alert(" succesfully login done");
+      })
+      .catch((error) => {
+        console.error(error);
+        alert(` please provite valid information " ${error}`);
+      });
+  };
   return (
     <div>
       <Navber></Navber>
@@ -12,7 +31,7 @@ const Login = () => {
           <h1 className="text-5xl font-bold text-center mt-5">
             Login Your Acount
           </h1>
-          <form className="card-body">
+          <form onSubmit={loginHandle} className="card-body">
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Email</span>
@@ -22,6 +41,7 @@ const Login = () => {
                 placeholder="email"
                 className="input input-bordered"
                 required
+                name="email"
               />
             </div>
             <div className="form-control">
@@ -33,6 +53,7 @@ const Login = () => {
                 placeholder="password"
                 className="input input-bordered"
                 required
+                name="password"
               />
               <label className="label">
                 <a href="#" className="label-text-alt link link-hover">
@@ -45,7 +66,7 @@ const Login = () => {
             </div>
           </form>
           <Link to="/register" className=" m-10">
-            <span> Are you new here? Please </span>
+            <span>Dont’t Have An Account? </span>
             <span className="font-bold text-blue-600">Register</span>
           </Link>
         </div>

@@ -11,7 +11,7 @@ import {
 
 const RightSide = () => {
   return (
-    <div>
+    <div className=" sticky ">
       <div>
         <h1 className="font-bold text-2xl mb-3">Login With</h1>
         <div>

@@ -1,7 +1,15 @@
 import { Link, NavLink } from "react-router-dom";
-import user from "../assets/user.png";
+import userLogo from "../assets/user.png";
+import { useContext } from "react";
+import { AuthContext } from "../AuthProvider/AuthProvider";
 
 const Navber = () => {
+  const { user, logOut } = useContext(AuthContext);
+  // console.log(user);
+
+  const handleLogOut = () => {
+    logOut().then().catch();
+  };
   const navber = (
     <>
       <li>
@@ -54,12 +62,23 @@ const Navber = () => {
             className="btn btn-ghost btn-circle avatar"
           >
             <div className="w-10 rounded-full ">
-              <img alt="Tailwind CSS Navbar component " src={user} />
+              <img alt="Tailwind CSS Navbar component " src={userLogo} />
             </div>
           </div>
-          <Link to="/login">
-            <span className="btn btn-sm">Login</span>
-          </Link>
+          {user ? (
+            <>
+              <p className="mr-2">{user.email}</p>
+              <p>
+                <button onClick={handleLogOut} className="btn btn-sm">
+                  logOut
+                </button>
+              </p>
+            </>
+          ) : (
+            <Link className="btn btn-sm" to="/login">
+              Login
+            </Link>
+          )}
         </div>
       </div>
     </div>

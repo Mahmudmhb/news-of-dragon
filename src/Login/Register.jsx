@@ -1,13 +1,24 @@
 import { Link } from "react-router-dom";
 import Navber from "../Header/Navber";
+import { useContext } from "react";
+import { AuthContext } from "../AuthProvider/AuthProvider";
 
 const Register = () => {
+  const { createUser } = useContext(AuthContext);
   const handleRegister = (e) => {
     e.preventDefault();
     const form = new FormData(e.currentTarget);
     const email = form.get("email");
     const password = form.get("password");
     console.log(email, password);
+    createUser(email, password)
+      .then((result) => {
+        console.log(result.user);
+      })
+      .catch((error) => {
+        console.error(error);
+        alert(error);
+      });
   };
   return (
     <div>
@@ -64,6 +75,16 @@ const Register = () => {
                 required
                 name="password"
               />
+            </div>
+            <div className="flex">
+              <input
+                className="mr-3"
+                type="checkbox"
+                name="checkbox"
+                required
+                id=""
+              />
+              <p>Accept Term & Conditions</p>
             </div>
             <div className="form-control mt-6">
               <button className="btn btn-primary">Register</button>

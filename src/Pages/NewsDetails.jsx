@@ -12,9 +12,9 @@ const NewsDetails = () => {
   // const prsID = parseInt(id);
 
   const detailNews = news.find((findnews) => findnews._id === id);
-  console.log(detailNews, id);
+  // console.log(detailNews, id);
 
-  console.log(detailNews.title);
+  // console.log(detailNews.title);
   const { author, thumbnail_url, _id, title, details, image_url } = detailNews;
 
   return (
@@ -34,7 +34,7 @@ const NewsDetails = () => {
               <p>{details}</p>
             </div>
           </div>
-          <Link to="/news" className="btn btn-outline">
+          <Link to="/" className="btn btn-outline">
             All Category is Here
           </Link>
         </div>

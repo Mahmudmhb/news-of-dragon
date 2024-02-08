@@ -13,20 +13,25 @@ const auth = getAuth(app);
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [loading, isLoading] = useState(true);
   const createUser = (email, password) => {
+    isLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
   const signInWithEmail = (email, password) => {
+    isLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
   const logOut = () => {
+    isLoading(true);
     return signOut(auth);
   };
 
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
+      isLoading(false);
       // console.log(currentUser);
     });
     return () => unSubscribe();
@@ -37,6 +42,7 @@ const AuthProvider = ({ children }) => {
     user,
     signInWithEmail,
     logOut,
+    loading,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
